@@ -21,15 +21,15 @@
         top: 0px;
         width: 100vw;
         height: 100vh;
-        overflow: hidden; /* IMPORTANT: crop extra Scratch padding */
+        overflow: hidden;
     }
 
     #scratch-embed {
         position: absolute;
         left: 0;
-        top: -44px; /* re-center Scratch canvas */
+        top: -44px;
         width: 100%;
-        height: calc(100% + 44px); /* compensate for offset */
+        height: calc(100% + 44px);
         border: none;
     }
 
@@ -41,7 +41,6 @@
         z-index: 10;
     }
 
-    /* Symmetric vertical masking */
     #mask-top {
         top: 0;
         left: 0;
@@ -56,7 +55,6 @@
         height: 3px;
     }
 
-    /* Side masking (adjust if needed) */
     #mask-left {
         top: 0;
         left: 0;
@@ -69,6 +67,18 @@
         right: 0;
         width: 176px;
         height: 100vh;
+    }
+
+    /* Rounded frame to hide white corners */
+    #rounded-frame {
+        position: fixed;
+        inset: 0;
+        border-radius: 12px;
+        pointer-events: none;
+        z-index: 20;
+
+        /* This fills EVERYTHING outside the rounded rect */
+        box-shadow: 0 0 0 9999px black;
     }
 </style>
 </head>
@@ -87,6 +97,9 @@
 <div id="mask-bottom" class="mask"></div>
 <div id="mask-left" class="mask"></div>
 <div id="mask-right" class="mask"></div>
+
+<!-- Rounded corner frame -->
+<div id="rounded-frame"></div>
 
 <script>
     // JS position control (game-style coordinates)
