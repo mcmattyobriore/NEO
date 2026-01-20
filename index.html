@@ -44,52 +44,28 @@ html, body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 3px;
+    height: 4px;
 }
 
 #mask-bottom {
     bottom: 0;
     left: 0;
     width: 100vw;
-    height: 3px;
+    height: 4px;
 }
 
 #mask-left {
     top: 0;
     left: 0;
-    width: 176px;
+    width: 177px;
     height: 100vh;
 }
 
 #mask-right {
     top: 0;
     right: 0;
-    width: 176px;
+    width: 177px;
     height: 100vh;
-}
-
-/* Overlay with transparent center and rounded edges */
-#overlay {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 30;
-    background: black;
-
-    /* Create a centered hole of 1012 x 780 with rounded edges */
-    clip-path: polygon(
-        /* top rectangle */
-        0 0, 100% 0, 100% calc(50% - 390px), 0 calc(50% - 390px),
-        /* left rectangle */
-        0 calc(50% - 390px), calc(50% - 506px) calc(50% - 390px),
-        calc(50% - 506px) calc(50% + 390px), 0 calc(50% + 390px),
-        /* bottom rectangle */
-        0 calc(50% + 390px), 100% calc(50% + 390px), 100% 100%, 0 100%,
-        /* right rectangle */
-        calc(50% + 506px) calc(50% - 390px), 100% calc(50% - 390px),
-        100% calc(50% + 390px), calc(50% + 506px) calc(50% + 390px)
-    );
-)
 }
 </style>
 </head>
@@ -108,9 +84,6 @@ html, body {
 <div id="mask-bottom" class="mask"></div>
 <div id="mask-left" class="mask"></div>
 <div id="mask-right" class="mask"></div>
-
-<!-- Overlay with transparent rounded hole -->
-<div id="overlay"></div>
 
 <script>
 let x = 0;
