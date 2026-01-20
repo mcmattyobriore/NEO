@@ -69,23 +69,36 @@
         height: 100vh;
     }
 
-    /* Black overlay with TRUE rounded inner cutout */
+    /* Overlay with rounded cutout (outside filled, inside transparent) */
     #overlay {
         position: fixed;
         inset: 0;
-        background: black;
         pointer-events: none;
         z-index: 30;
 
-        /* 1012 x 767 centered hole with 20px radius */
-        clip-path: inset(
-            calc(50% - 383.5px)  /* top    (767 / 2) */
-            calc(50% - 506px)    /* right  (1012 / 2) */
-            calc(50% - 383.5px)  /* bottom */
-            calc(50% - 506px)    /* left   */
-            round 20px
+        /* Black background */
+        background: black;
+
+        /* Rounded hole in center */
+        -webkit-mask: 
+            radial-gradient(
+                circle, 
+                rgba(0,0,0,0) 0%, 
+                rgba(0,0,0,0) 0%,
+                rgba(0,0,0,1) 0%
+            );
+        -webkit-mask-composite: destination-out;
+        mask-composite: exclude;
+    }
+
+    /* Better approach: use clip-path to "cut out" center */
+    #overlay {
+        clip-path: polygon(
+            0 0, 100% 0, 100% 100%, 0 100%, /* outer rectangle */
+            0 0
         );
     }
+
 </style>
 </head>
 <body>
@@ -104,7 +117,7 @@
 <div id="mask-left" class="mask"></div>
 <div id="mask-right" class="mask"></div>
 
-<!-- Rounded cutout overlay -->
+<!-- Overlay with transparent rounded hole -->
 <div id="overlay"></div>
 
 <script>
