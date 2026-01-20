@@ -5,13 +5,6 @@
 <title>Spamton Neo remake by Gangstermango</title>
 
 <style>
-    :root {
-        /* EDIT THESE */
-        --frame-width: 1280px;
-        --frame-height: 720px;
-        --frame-radius: 12px;
-    }
-
     html, body {
         margin: 0;
         padding: 0;
@@ -76,20 +69,20 @@
         height: 100vh;
     }
 
-    /* Resizable rounded frame */
-    #rounded-frame {
+    /* Simple rounded frame around visible area */
+    #content-frame {
         position: fixed;
-        top: 50%;
-        left: 50%;
-        width: var(--frame-width);
-        height: var(--frame-height);
-        transform: translate(-50%, -50%);
-        border-radius: var(--frame-radius);
-        pointer-events: none;
-        z-index: 20;
+        left: 176px;
+        top: 3px;
+        width: calc(100vw - 352px); /* 176 * 2 */
+        height: calc(100vh - 6px);  /* 3 * 2 */
 
-        /* Fill everything outside the rounded area */
-        box-shadow: 0 0 0 9999px black;
+        border: 2px solid black;
+        border-radius: 12px;
+
+        background: transparent;
+        pointer-events: none;
+        z-index: 30;
     }
 </style>
 </head>
@@ -109,8 +102,8 @@
 <div id="mask-left" class="mask"></div>
 <div id="mask-right" class="mask"></div>
 
-<!-- Rounded corner frame -->
-<div id="rounded-frame"></div>
+<!-- Empty bordered frame -->
+<div id="content-frame"></div>
 
 <script>
     // JS position control (game-style coordinates)
