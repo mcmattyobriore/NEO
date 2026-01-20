@@ -5,6 +5,13 @@
 <title>Spamton Neo remake by Gangstermango</title>
 
 <style>
+    :root {
+        /* EDIT THESE */
+        --frame-width: 1280px;
+        --frame-height: 720px;
+        --frame-radius: 12px;
+    }
+
     html, body {
         margin: 0;
         padding: 0;
@@ -17,8 +24,8 @@
     /* Container so we can move it in JS */
     #scratch-container {
         position: absolute;
-        left: 0px;
-        top: 0px;
+        left: 0;
+        top: 0;
         width: 100vw;
         height: 100vh;
         overflow: hidden;
@@ -69,15 +76,19 @@
         height: 100vh;
     }
 
-    /* Rounded frame to hide white corners */
+    /* Resizable rounded frame */
     #rounded-frame {
         position: fixed;
-        inset: 0;
-        border-radius: 12px;
+        top: 50%;
+        left: 50%;
+        width: var(--frame-width);
+        height: var(--frame-height);
+        transform: translate(-50%, -50%);
+        border-radius: var(--frame-radius);
         pointer-events: none;
         z-index: 20;
 
-        /* This fills EVERYTHING outside the rounded rect */
+        /* Fill everything outside the rounded area */
         box-shadow: 0 0 0 9999px black;
     }
 </style>
@@ -113,9 +124,6 @@
         container.style.left = x + "px";
         container.style.top = y + "px";
     }
-
-    // Example:
-    // moveScratch(50, 30);
 </script>
 
 </body>
