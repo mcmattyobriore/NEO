@@ -33,7 +33,7 @@
         border: none;
     }
 
-    /* Black mask boxes */
+    /* Black mask boxes (unchanged) */
     .mask {
         position: fixed;
         background: black;
@@ -69,15 +69,16 @@
         height: 100vh;
     }
 
-    /* Simple rounded frame around visible area */
+    /* Simple centered fixed-size frame */
     #content-frame {
         position: fixed;
-        left: 176px;
-        top: 3px;
-        width: calc(100vw - 352px); /* 176 * 2 */
-        height: calc(100vh - 6px);  /* 3 * 2 */
+        top: 50%;
+        left: 50%;
+        width: 1012px;
+        height: 780px; /* >767 and <800 */
+        transform: translate(-50%, -50%);
 
-        border: 20px solid black;
+        border: 2px solid black;
         border-radius: 12px;
 
         background: transparent;
@@ -102,7 +103,8 @@
 <div id="mask-left" class="mask"></div>
 <div id="mask-right" class="mask"></div>
 
-<!-- Empty bordered frame -->
+<!-- Centered bordered frame -->
+<div id="content-frame"></div>
 
 <script>
     // JS position control (game-style coordinates)
