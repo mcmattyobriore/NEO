@@ -69,21 +69,22 @@
         height: 100vh;
     }
 
-    /* Simple centered fixed-size frame */
-    #content-frame {
+    /* Black overlay with TRUE rounded inner cutout */
+    #overlay {
         position: fixed;
-        top: 50%;
-        left: 50%;
-        width: 1012px;
-        height: 767px; /* >767 and <800 */
-        transform: translate(-50%, -50%);
-
-        border: 20px solid black;
-        border-radius: 20px;
-
-        background: transparent;
+        inset: 0;
+        background: black;
         pointer-events: none;
         z-index: 30;
+
+        /* 1012 x 767 centered hole with 20px radius */
+        clip-path: inset(
+            calc(50% - 383.5px)  /* top    (767 / 2) */
+            calc(50% - 506px)    /* right  (1012 / 2) */
+            calc(50% - 383.5px)  /* bottom */
+            calc(50% - 506px)    /* left   */
+            round 20px
+        );
     }
 </style>
 </head>
@@ -103,8 +104,8 @@
 <div id="mask-left" class="mask"></div>
 <div id="mask-right" class="mask"></div>
 
-<!-- Centered bordered frame -->
-<div id="content-frame"></div>
+<!-- Rounded cutout overlay -->
+<div id="overlay"></div>
 
 <script>
     // JS position control (game-style coordinates)
